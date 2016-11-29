@@ -1,0 +1,65 @@
+<?php
+function user_greetings_menu() {
+    $items = array();
+    $items['welcome/admin'] = array(
+      'title' => 'Hello Admin!',
+      'page callback' => 'say_hello_admin',
+      'access callback' => TRUE,
+      'type' => MENU_CALLBACK,
+    );
+    $items['bye/admin'] = array(
+      'title' => 'Bye Admin!',
+      'page callback' => 'say_bye',
+      'access callback' => TRUE,
+      'type' => MENU_CALLBACK,
+    );
+    $items['farewell'] = array(
+      'title' => 'Farewell Friend!',
+      'page callback' => 'say_farewell',
+      'access callback' => TRUE,
+      'type' => MENU_CALLBACK,
+    );
+    $items['hello_friend'] = array(
+      'title' => 'Hello Friend!',
+      'page callback' => 'say_hello',
+      'access callback' => TRUE,
+      'type' => MENU_CALLBACK,
+    );
+    return $items;
+}
+
+function user_greetings_user_login(&$edit, $account) {
+    if (in_array('administrator', $account->roles)) {
+        $_GET['destination'] = 'welcome/admin';
+    } else {
+        $_GET['destination'] = 'about';
+    }
+}
+
+function user_greetings_user_logout($account) {
+    if (in_array('administrator', $account->roles)) {
+        $_GET['destination'] = 'bye/admin';
+    } else {
+        $_GET['destination'] = 'farewell';
+    }
+}
+
+function say_hello_admin() {
+    return '
+    Hellooooooo admin!
+    ';
+}
+
+function say_bye() {
+    return '
+    Bye bye byee admin!
+    ';
+}
+
+function say_hello() {
+  return '<p>Hello my dear friend!</p>';
+}
+
+function say_farewell() {
+  return '<p>Fare thee well my dear friend!</p>';
+}
