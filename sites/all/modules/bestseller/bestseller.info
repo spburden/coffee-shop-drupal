@@ -1,0 +1,6 @@
+name = Bestseller
+description = Information about Cameron's best selling coffee.
+package = Cameron's Coffee Custom Module
+core = 7.x
+files[] = bestseller.module, bestseller.jpg
+stylesheets[all][] = bestseller.css

@@ -1,0 +1,6 @@
+<?php
+function hello_user_user_insert($account){
+    $message = $account['name'] . ' thank you for creating an account. A confirmation email will be sent to ' . $account['mail'];
+    drupal_set_message($message);
+    return;
+}

@@ -1,0 +1,5 @@
+name = Cards
+description = Create pages for cards for customers.
+package = Cameron's Coffee Custom Module
+core = 7.x
+files[] = cards.module

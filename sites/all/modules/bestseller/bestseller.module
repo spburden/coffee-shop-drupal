@@ -1,0 +1,19 @@
+<?php
+function bestseller_menu() {
+    $items = array();
+    $items['bestseller'] = array(
+        'title' => "Cameron's Bestseller",
+        'page callback' => 'bestseller_display',
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+    );
+    return $items;
+}
+
+function bestseller_display() {
+  return "
+  <h1>Cameron's Best Seller</h1>
+  <a href='https://en.wikipedia.org/wiki/Coffee'><img id='coffee-image' src='http://localhost:8888/sites/all/modules/bestseller/bestseller.jpg' ></a>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  ";
+}

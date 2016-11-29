@@ -1,0 +1,5 @@
+name = Specials
+description = List out Cameron's daily specials.
+package = Epicodus Examples
+core = 7.x
+files[] = specials.module

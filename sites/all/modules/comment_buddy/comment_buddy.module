@@ -1,0 +1,31 @@
+<?php
+function comment_buddy_menu() {
+    $items = array();
+    $items['new_comment'] = array(
+      'title' => 'New Comment!',
+      'page callback' => 'show_success_message',
+      'access callback' => TRUE,
+      'type' => MENU_CALLBACK,
+    );
+    return $items;
+}
+
+function comment_buddy_comment_delete() {
+    drupal_set_message("Your message was successfully deleted");
+    return;
+}
+
+function comment_buddy_comment_insert() {
+    $_GET['destination'] = 'new_comment';
+}
+
+function comment_buddy_comment_update() {
+    drupal_set_message("Your message was successfully updated");
+    return;
+}
+
+function show_success_message() {
+    return '
+    <p>Your message was successfully added</p>
+    ';
+}

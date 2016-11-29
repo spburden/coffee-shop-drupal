@@ -1,0 +1,48 @@
+<?php
+
+function cards_menu() {
+    $items = array();
+    $roasts = array('Light', 'Medium', 'Dark');
+    foreach ($roasts as $roast) {
+        $items['cards/' . $roast] = array(
+            'title' => $roast . ' Menu',
+            'page callback' => 'roast_display',
+            'page arguments' => array($roast),
+            'access callback' => TRUE,
+            'type' => MENU_NORMAL_ITEM,
+        );
+    };
+    return $items;
+};
+
+function roast_display($roast) {
+    if ($roast === "Light") {
+        return '
+        <ul>
+            <li>Ethiopian</li>
+            <li>Sumatran</li>
+            <li>Peruvian</li>
+        </ul>
+        ';
+    } elseif ($roast === "Medium") {
+        return '
+        <ul>
+            <li>Kona</li>
+            <li>Brazilian</li>
+            <li>Indian</li>
+        </ul>
+        ';
+    } elseif ($roast === "Dark") {
+        return '
+        <ul>
+            <li>French Columbian</li>
+            <li>Italian</li>
+            <li>Dark Costa Rican</li>
+        </ul>
+        ';
+    } else {
+        return '
+        <p>DID NOT WORK</p>
+        ';
+    }
+}
