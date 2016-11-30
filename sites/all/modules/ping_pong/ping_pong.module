@@ -1,0 +1,62 @@
+<?php
+
+function ping_pong_menu() {
+    $items = array();
+    $items['pong_input'] = array(
+        'title' => 'Ping Pong Game',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('pong_form'),
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+    );
+
+    $items['ping_pong_results'] = array(
+        'title' => 'Ping Pong Results!',
+        'page callback' => 'play_pong',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+
+    return $items;
+}
+
+function play_pong() {
+    $number = $_SESSION['pong_number'];
+    $pong_array = array();
+    for ($i=1; $i < $number; $i++) {
+        if ($i % 15 === 0) {
+            array_push($pong_array, 'ping-pong');
+        } elseif ($i % 5 === 0) {
+            array_push($pong_array, 'pong');
+        } elseif ($i % 3 === 0) {
+            array_push($pong_array, 'ping');
+        } else {
+            array_push($pong_array, $i);
+        }
+    }
+    $string = '<ul>';
+    foreach ($pong_array as $number) {
+        $string .= '<li>' . $number . '</li>';
+    }
+    $string .= '</ul>';
+    return $string;
+}
+
+function pong_form() {
+    $form['pong_number'] = array(
+        '#title' => 'Number',
+        '#type' => 'textfield',
+        '#description' => t('Enter a number to play.'),
+    );
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Play Pong!',
+    );
+    return $form;
+}
+
+function pong_form_submit($form, &$form_state) {
+    $number = $form_state['values']['pong_number'];
+    $_SESSION['pong_number'] = $number;
+    $form_state['redirect'] = 'ping_pong_results';
+}

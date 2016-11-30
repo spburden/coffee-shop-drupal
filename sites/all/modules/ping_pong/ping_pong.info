@@ -1,0 +1,5 @@
+name = Ping Pong
+description = Display ping ping results depending on number.
+package = Epicodus Examples
+core = 7.x
+files[] = ping_pong.module
